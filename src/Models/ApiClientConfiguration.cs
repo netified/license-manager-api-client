@@ -33,6 +33,7 @@ namespace LicenseManager.Api.Client.Models
         /// </summary>
         public ApiClientConfiguration()
         {
+            BaseAddress = new Uri("https://api.netified.io/license-manager/v1/");
             RetryConfiguration = new ApiClientRetryConfiguration();
         }
     }
