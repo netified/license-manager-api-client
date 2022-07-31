@@ -6,7 +6,7 @@
 [![Nuget](https://img.shields.io/nuget/dt/Netified.LicenseManager.Api.Client?style=for-the-badge)](#)
 [![Nuget](https://img.shields.io/nuget/v/Netified.LicenseManager.Api.Client?style=for-the-badge)](#)
 
-A .NET Standard and .NET Core SalesfoLicense Managerrce REST API toolkit and API wrapper.
+A .NET Standard and .NET Core License Manager REST API toolkit and API wrapper.
 
 ## Installation
 
