@@ -45,14 +45,14 @@ By default API requests to License Manager must be authenticated, you can find b
 public class MyAPIHandler : DelegatingHandler
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly ILogger<ApiManagementHandler> _logger;
+    private readonly ILogger<MyAPIHandler> _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ApiManagementHandler"/> class.
+    /// Initializes a new instance of the <see cref="MyAPIHandler"/> class.
     /// </summary>
     /// <param name="httpContextAccessor">The HTTP context accessor.</param>
     /// <param name="logger">The logger.</param>
-    public ApiManagementHandler(IHttpContextAccessor httpContextAccessor, ILogger<ApiManagementHandler> logger)
+    public MyAPIHandler(IHttpContextAccessor httpContextAccessor, ILogger<MyAPIHandler> logger)
     {
         _httpContextAccessor = httpContextAccessor;
         _logger = logger;
