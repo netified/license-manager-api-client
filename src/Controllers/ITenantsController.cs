@@ -93,6 +93,6 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="role">The role.</param>
         /// <returns></returns>
         [Put("/tenants/{tenantId}/members/{userId}/role")]
-        Task UpdateRoleMemberAsync(Guid tenantId, Guid userId, TenantRoleType role);
+        Task UpdateRoleMemberAsync(Guid tenantId, Guid userId, UserRoleType role);
     }
 }
