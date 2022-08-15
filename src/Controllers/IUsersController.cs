@@ -18,9 +18,35 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
+using LicenseManager.Api.Abstractions;
+using Refit;
+using System;
+using System.Threading.Tasks;
+
 namespace LicenseManager.Api.Client.Models
 {
-    internal class IUsersController : IApiController
+    public interface IUsersController : IApiController
     {
+        /// <summary>
+        /// List all users.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <param name="sorts">The sorts.</param>
+        /// <param name="page">The page number.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        [Get("/users?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
+        Task<PagedResult<UserDto>> ListAsync(string filters, string sorts, int? page = 1, int? pageSize = 100);
+
+        /// <summary>
+        /// Get the current user.
+        /// </summary>
+        [Get("/users/me")]
+        Task<UserDto> GetCurrentAsync();
+
+        /// <summary>
+        /// Update the default tenant of the current user.
+        /// </summary>
+        [Put("/users/me/tenants/{tenantId}")]
+        Task<UserDto> SetDefaultTenantAsync(Guid tenantId);
     }
 }
