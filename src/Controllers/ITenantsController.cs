@@ -29,70 +29,58 @@ namespace LicenseManager.Api.Client.Models
     public interface ITenantsController : IApiController
     {
         /// <summary>
-        /// Lists the tenants asynchronous.
+        /// List all tenants.
         /// </summary>
-        /// <returns></returns>
-        [Get("/tenants")]
-        Task<PagedResult<TenantDto>> ListAsync();
+        /// <param name="filters">The filters.</param>
+        /// <param name="sorts">The sorts.</param>
+        /// <param name="page">The page number.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        [Get("/tenants?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
+        Task<PagedResult<TenantDto>> ListAsync(string filters, string sorts, int? page = 1, int? pageSize = 100);
 
         /// <summary>
-        /// Adds the tenant asynchronous.
+        /// Create a tenant.
         /// </summary>
         /// <param name="request">The request.</param>
-        /// <returns></returns>
         [Post("/tenants")]
         Task<TenantDto> AddAsync(TenantRequest request);
 
         /// <summary>
-        /// Gets the tenant asynchronous.
+        /// Getting a tenant.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
-        /// <returns></returns>
         [Get("/tenants/{tenantId}")]
         Task<TenantDto> GetAsync(Guid tenantId);
 
         /// <summary>
-        /// Deletes the tenant asynchronous.
+        /// Delete the tenant.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
-        /// <returns></returns>
         [Delete("/tenants/{tenantId}")]
         Task DeleteAsync(Guid tenantId);
 
         /// <summary>
-        /// Lists the tenant members asynchronous.
+        /// List of tenant's user permissions.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
-        /// <returns></returns>
-        [Get("/tenants/{tenantId}/members")]
-        Task<List<UserTenantDto>> ListMemberAsync(Guid tenantId);
+        [Get("/tenants/{tenantId}/permissions")]
+        Task<List<PermissionDto>> ListPermissionAsync(Guid tenantId);
 
         /// <summary>
-        /// Adds the member in the tenant asynchronous.
+        /// Add a user permission to the tenant.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
-        /// <param name="request">The request.</param>
-        /// <returns></returns>
-        [Get("/tenants/{tenantId}/members")]
-        Task<UserTenantDto> AddMemberAsync(Guid tenantId, TenantMemberRequest request);
+        /// <param name="request">The permission request.</param>
+        [Post("/tenants/{tenantId}/permissions")]
+        Task AddPermissionAsync(Guid tenantId, TenantMemberRequest request);
 
         /// <summary>
-        /// Deletes the tenant member asynchronous.
+        /// Remove the user's permission from the tenant.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
-        /// <param name="userId">The user identifier.</param>
+        /// <param name="permissionId">The permission identifier.</param>
         /// <returns></returns>
-        [Get("/tenants/{tenantId}/members/{userId}")]
-        Task DeleteMemberAsync(Guid tenantId, Guid userId);
-
-        /// <summary>
-        /// Updates the role of a tenant member asynchronous.
-        /// </summary>
-        /// <param name="tenantId">The tenant identifier.</param>
-        /// <param name="userId">The user identifier.</param>
-        /// <param name="role">The role.</param>
-        /// <returns></returns>
-        [Put("/tenants/{tenantId}/members/{userId}/role")]
-        Task UpdateRoleMemberAsync(Guid tenantId, Guid userId, UserRoleType role);
+        [Get("/tenants/{tenantId}/permissions/{permissionId}")]
+        Task RemovePermissionAsync(Guid tenantId, Guid permissionId);
     }
 }
