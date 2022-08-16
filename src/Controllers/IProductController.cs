@@ -21,6 +21,7 @@
 using LicenseManager.Api.Abstractions;
 using Refit;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LicenseManager.Api.Client.Models
@@ -31,56 +32,58 @@ namespace LicenseManager.Api.Client.Models
     public interface IProductController : IApiController
     {
         /// <summary>
-        /// Lists the products asynchronous.
+        /// List all the products.
         /// </summary>
-        /// <returns></returns>
-        [Get("/tenants/{tenantId}/products")]
-        Task<PagedResult<ProductDto>> ListAsync();
+        /// <param name="tenantId">The tenant identifier.</param>
+        /// <param name="filters">The filters.</param>
+        /// <param name="sorts">The sorts.</param>
+        /// <param name="page">The page number.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        [Get("/tenants/{tenantId}/products?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
+        Task<PagedResult<ProductDto>> ListAsync(Guid tenantId, string filters, string sorts, int? page = 1, int? pageSize = 100);
 
         /// <summary>
-        /// Adds the product asynchronous.
+        /// 🧊 Add a product.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
         /// <param name="request">The product request.</param>
-        /// <returns></returns>
         [Post("/tenants/{tenantId}/products")]
         Task<ProductDto> AddAsync(Guid tenantId, ProductRequest request);
 
         /// <summary>
-        /// Imports the product asynchronous.
+        /// Import a product.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
-        /// <param name="request">The product request.</param>
-        /// <returns></returns>
+        /// <param name="product">The product configuration.</param>
         [Post("/tenants/{tenantId}/products/import")]
-        Task<ProductDto> ImportAsync(Guid tenantId, ProductBackupDto request);
+        Task<ProductDto> ImportAsync(Guid tenantId, ProductBackupDto product);
 
         /// <summary>
-        /// Exports the product asynchronous.
+        /// List of product's user permissions.
         /// </summary>
-        /// <param name="tenantId">The tenant identifier.</param>
         /// <param name="productId">The product identifier.</param>
-        /// <returns></returns>
-        [Post("/tenants/{tenantId}/products/{productIdm" +
-            "}/export")]
-        Task<ProductBackupDto> ExportAsync(Guid tenantId, Guid productId);
+        [Get("/products/{productId:guid}/permissions")]
+        Task<List<PermissionDto>> ListPermissionAsync(Guid productId);
 
         /// <summary>
-        /// Gets the product asynchronous.
+        /// Get a product.
         /// </summary>
-        /// <param name="tenantId">The tenant identifier.</param>
         /// <param name="productId">The product identifier.</param>
-        /// <returns></returns>
-        [Get("/tenants/{tenantId}/products/{productId}")]
-        Task<ProductDto> GetAsync(Guid tenantId, Guid productId);
+        [Get("/products/{productId}")]
+        Task<ProductDto> GetAsync(Guid productId);
 
         /// <summary>
-        /// Deletes the product asynchronous.
+        /// Export a product.
         /// </summary>
-        /// <param name="tenantId">The tenant identifier.</param>
         /// <param name="productId">The product identifier.</param>
-        /// <returns></returns>
-        [Delete("/tenants/{tenantId}/products/{productId}")]
-        Task DeleteAsync(Guid tenantId, Guid productId);
+        [Post("products/{productId:guid}/export")]
+        Task<ProductBackupDto> ExportAsync(Guid productId);
+
+        /// <summary>
+        /// 🧊 Delete a product.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        [Delete("products/{productId:guid}")]
+        Task DeleteAsync(Guid productId);
     }
 }
