@@ -27,13 +27,59 @@ namespace LicenseManager.Api.Client.Models
 {
     public interface ILicensesController : IApiController
     {
-        [Get("/tenants/{tenantId}/licenses")]
-        Task<PagedResult<LicenseDto>> ListAsync();
+        /// <summary>
+        /// Get all licenses.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <param name="filters">The filters.</param>
+        /// <param name="sorts">The sorts.</param>
+        /// <param name="page">The page number.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        [Get("/products/{productId:guid}/licenses?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
+        Task<PagedResult<UserDto>> ListAsync(Guid productId, string filters, string sorts, int? page = 1, int? pageSize = 100);
 
-        [Get("/tenants/{tenantId}/licenses/{licenseId}")]
-        Task<ProductDto> GetAsync(Guid tenantId, Guid licenseId);
+        /// <summary>
+        /// Get a license.
+        /// </summary>
+        /// <param name="licenseId">The license identifier.</param>
+        [Get("/licenses/{licenseId}")]
+        Task<ProductDto> GetAsync(Guid licenseId);
 
-        [Delete("/tenants/{tenantId}/licenses/{licenseId}")]
-        Task DeleteAsync(Guid tenantId, Guid licenseId);
+        /// <summary>
+        /// Add a license.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <param name="request">The license request.</param>
+        [Post("products/{productId:guid}/licenses")]
+        Task<LicenseDto> AddAsync(Guid productId, LicenseRequest request);
+
+        /// <summary>
+        /// Import a license.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <param name="license">The saved license.</param>
+        [Post("products/{productId:guid}/licenses/import")]
+        Task<LicenseDto> ImportAsync(Guid productId, LicenseBackupDto license);
+
+        /// <summary>
+        /// Export a license.
+        /// </summary>
+        /// <param name="licenseId">The license identifier.</param>
+        [Post("licenses/{licenseId:guid}/export")]
+        Task<LicenseBackupDto> ExportAsync(Guid licenseId);
+
+        /// <summary>
+        /// Download the license.
+        /// </summary>
+        /// <param name="licenseId">The license identifier.</param>
+        [Get("licenses/{licenseId}/download")]
+        Task<string> DownloadAsync(Guid licenseId);
+
+        /// <summary>
+        /// Delete a license.
+        /// </summary>
+        /// <param name="licenseId">The license identifier.</param>
+        [Delete("licenses/{licenseId}")]
+        Task DeleteAsync(Guid licenseId);
     }
 }
