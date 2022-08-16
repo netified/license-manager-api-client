@@ -43,7 +43,7 @@ namespace LicenseManager.Api.Client.Extensions
         /// <param name="configSection">The configuration section.</param>
         /// <param name="refitSettings">The refit settings.</param>
         public static void AddLicenseManagerClient<ApiClientHandler>(
-            IServiceCollection services,
+            this IServiceCollection services,
             IConfiguration configuration,
             string configSection = nameof(ApiClientConfiguration),
             RefitSettings refitSettings = null)

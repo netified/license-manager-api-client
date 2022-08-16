@@ -1,16 +1,16 @@
 # Netified.LicenseManager.Api.Client
 
-[![GitHub](https://img.shields.io/github/license/netified/license-manager-api-client?style=for-the-badge)](#)
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/netified?style=for-the-badge)](#)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/netified/license-manager-api-client/Continuous%20integration?style=for-the-badge)](#)
-[![Nuget](https://img.shields.io/nuget/dt/Netified.LicenseManager.Api.Client?style=for-the-badge)](#)
-[![Nuget](https://img.shields.io/nuget/v/Netified.LicenseManager.Api.Client?style=for-the-badge)](#)
+[![GitHub](https://img.shields.io/github/license/netified/license-manager-api-client?style=for-the-badge)](https://github.com/netified/license-manager-api-client/blob/main/LICENSE)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/netified?style=for-the-badge)](https://github.com/sponsors/thomas-illiet/)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/netified/license-manager-api-client/Continuous%20integration?style=for-the-badge)](https://github.com/netified/license-manager-api-client/actions/workflows/ci.yml)
+[![Nuget](https://img.shields.io/nuget/dt/Netified.LicenseManager.Api.Client?style=for-the-badge)](https://www.nuget.org/packages/Netified.LicenseManager.Api.Client/)
+[![Nuget](https://img.shields.io/nuget/v/Netified.LicenseManager.Api.Client?style=for-the-badge)](https://www.nuget.org/packages/Netified.LicenseManager.Api.Client/)
 
 A .NET Standard and .NET Core License Manager REST API toolkit and API wrapper.
 
 ## Installation
 
-The library is available as a nuget package. You can install it as any other nuget package from your IDE, try to search by `Netified.LicenseManager.Api.Client`. You can find package details [on this webpage](https://www.nuget.org/packages/Netified.LicenseManager.Api.Client).
+The library is available as a nuget package. You can install it as any other nuget package from your IDE, try to search by `Netified.LicenseManager.Api.Client`. You can find package details [on this web page](https://www.nuget.org/packages/Netified.LicenseManager.Api.Client).
 
 ```xml
 // Package Manager
@@ -26,7 +26,7 @@ dotnet add package Netified.LicenseManager.Api.Client
 Then add the following to your ConfigureServices method.
 
 ```csharp
-services<MyAPIHandler>.AddLicenseManagerClient(Configuration)
+services.AddLicenseManagerClient<MyAPIHandler>(Configuration)
 ```
 
 The following are required in app settings if you are not using an official installation:
