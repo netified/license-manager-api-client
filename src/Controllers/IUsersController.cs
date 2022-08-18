@@ -35,7 +35,7 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="page">The page number.</param>
         /// <param name="pageSize">Size of the page.</param>
         [Get("/users?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<UserDto>> ListAsync(string filters, string sorts, int? page = 1, int? pageSize = 100);
+        Task<PagedResult<UserDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100);
 
         /// <summary>
         /// Get the current user.

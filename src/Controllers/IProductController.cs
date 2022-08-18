@@ -40,7 +40,7 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="page">The page number.</param>
         /// <param name="pageSize">Size of the page.</param>
         [Get("/tenants/{tenantId}/products?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<ProductDto>> ListAsync(Guid tenantId, string filters, string sorts, int? page = 1, int? pageSize = 100);
+        Task<PagedResult<ProductDto>> ListAsync(Guid tenantId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100);
 
         /// <summary>
         /// 🧊 Add a product.
