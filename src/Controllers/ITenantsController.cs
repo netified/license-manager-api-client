@@ -80,7 +80,7 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="tenantId">The tenant identifier.</param>
         /// <param name="permissionId">The permission identifier.</param>
         /// <returns></returns>
-        [Get("/tenants/{tenantId}/permissions/{permissionId}")]
+        [Delete("/tenants/{tenantId}/permissions/{permissionId}")]
         Task RemovePermissionAsync(Guid tenantId, Guid permissionId);
     }
 }
