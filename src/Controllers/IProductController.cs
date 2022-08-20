@@ -62,7 +62,7 @@ namespace LicenseManager.Api.Client.Models
         /// List of product's user permissions.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
-        [Get("/products/{productId:guid}/permissions")]
+        [Get("/products/{productId}/permissions")]
         Task<List<PermissionDto>> ListPermissionAsync(Guid productId);
 
         /// <summary>
@@ -76,14 +76,14 @@ namespace LicenseManager.Api.Client.Models
         /// Export a product.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
-        [Post("products/{productId:guid}/export")]
+        [Post("products/{productId}/export")]
         Task<ProductBackupDto> ExportAsync(Guid productId);
 
         /// <summary>
         /// 🧊 Delete a product.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
-        [Delete("products/{productId:guid}")]
+        [Delete("products/{productId}")]
         Task DeleteAsync(Guid productId);
     }
 }
