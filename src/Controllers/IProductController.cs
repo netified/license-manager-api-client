@@ -76,14 +76,14 @@ namespace LicenseManager.Api.Client.Models
         /// Export a product.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
-        [Post("products/{productId}/export")]
+        [Post("/products/{productId}/export")]
         Task<ProductBackupDto> ExportAsync(Guid productId);
 
         /// <summary>
         /// 🧊 Delete a product.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
-        [Delete("products/{productId}")]
+        [Delete("/products/{productId}")]
         Task DeleteAsync(Guid productId);
     }
 }
