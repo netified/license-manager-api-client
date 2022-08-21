@@ -36,14 +36,14 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="page">The page number.</param>
         /// <param name="pageSize">Size of the page.</param>
         [Get("/products/{productId}/licenses?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<UserDto>> ListAsync(Guid productId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100);
+        Task<PagedResult<LicenseDto>> ListAsync(Guid productId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100);
 
         /// <summary>
         /// Get a license.
         /// </summary>
         /// <param name="licenseId">The license identifier.</param>
         [Get("/licenses/{licenseId}")]
-        Task<ProductDto> GetAsync(Guid licenseId);
+        Task<LicenseDto> GetAsync(Guid licenseId);
 
         /// <summary>
         /// Add a license.
