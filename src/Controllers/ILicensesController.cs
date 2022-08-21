@@ -50,7 +50,7 @@ namespace LicenseManager.Api.Client.Models
         /// </summary>
         /// <param name="productId">The product identifier.</param>
         /// <param name="request">The license request.</param>
-        [Post("products/{productId:guid}/licenses")]
+        [Post("/products/{productId}/licenses")]
         Task<LicenseDto> AddAsync(Guid productId, LicenseRequest request);
 
         /// <summary>
@@ -58,28 +58,28 @@ namespace LicenseManager.Api.Client.Models
         /// </summary>
         /// <param name="productId">The product identifier.</param>
         /// <param name="license">The saved license.</param>
-        [Post("products/{productId:guid}/licenses/import")]
+        [Post("/products/{productId}/licenses/import")]
         Task<LicenseDto> ImportAsync(Guid productId, LicenseBackupDto license);
 
         /// <summary>
         /// Export a license.
         /// </summary>
         /// <param name="licenseId">The license identifier.</param>
-        [Post("licenses/{licenseId:guid}/export")]
+        [Post("/licenses/{licenseId}/export")]
         Task<LicenseBackupDto> ExportAsync(Guid licenseId);
 
         /// <summary>
         /// Download the license.
         /// </summary>
         /// <param name="licenseId">The license identifier.</param>
-        [Get("licenses/{licenseId}/download")]
+        [Get("/licenses/{licenseId}/download")]
         Task<string> DownloadAsync(Guid licenseId);
 
         /// <summary>
         /// Delete a license.
         /// </summary>
         /// <param name="licenseId">The license identifier.</param>
-        [Delete("licenses/{licenseId}")]
+        [Delete("/licenses/{licenseId}")]
         Task DeleteAsync(Guid licenseId);
     }
 }
