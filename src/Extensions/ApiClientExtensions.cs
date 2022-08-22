@@ -65,6 +65,33 @@ namespace LicenseManager.Api.Client.Extensions
         }
 
         /// <summary>
+        /// Adds the license manager client.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
+        /// <param name="configuration">The product configuration.</param>
+        /// <param name="configSection">The configuration section.</param>
+        /// <param name="refitSettings">The refit settings.</param>
+        public static void AddLicenseManagerClient(
+            this IServiceCollection services,
+            IConfiguration configuration,
+            string configSection = nameof(ApiClientConfiguration),
+            RefitSettings refitSettings = null)
+        {
+            // Load client configuration
+            var clientConfiguration = new ApiClientConfiguration();
+            configuration.GetSection(configSection).Bind(clientConfiguration);
+
+            // Register all controllers.
+            foreach (var controller in ListApiController())
+            {
+                services.AddRefitClient(controller, refitSettings)
+                    .ConfigureHttpClient(c => c.BaseAddress = clientConfiguration.BaseAddress)
+                    .AddPolicyHandler(GetRetryPolicy(clientConfiguration.RetryConfiguration))
+                    .AddPolicyHandler(GetTimeoutPolicy(clientConfiguration.RetryConfiguration));
+            }
+        }
+
+        /// <summary>
         /// Lists the API controllers.
         /// </summary>
         /// <returns></returns>
