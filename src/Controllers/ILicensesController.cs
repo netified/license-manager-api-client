@@ -21,6 +21,7 @@
 using LicenseManager.Api.Abstractions;
 using Refit;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LicenseManager.Api.Client.Models
@@ -35,51 +36,58 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="sorts">The sorts.</param>
         /// <param name="page">The page number.</param>
         /// <param name="pageSize">Size of the page.</param>
+        /// <param name="headers">The headers.</param>
         [Get("/products/{productId}/licenses?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<LicenseDto>> ListAsync(Guid productId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100);
+        Task<PagedResult<LicenseDto>> ListAsync(Guid productId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Get a license.
         /// </summary>
         /// <param name="licenseId">The license identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Get("/licenses/{licenseId}")]
-        Task<LicenseDto> GetAsync(Guid licenseId);
+        Task<LicenseDto> GetAsync(Guid licenseId, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Add a license.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
         /// <param name="request">The license request.</param>
+        /// <param name="headers">The headers.</param>
         [Post("/products/{productId}/licenses")]
-        Task<LicenseDto> AddAsync(Guid productId, LicenseRequest request);
+        Task<LicenseDto> AddAsync(Guid productId, LicenseRequest request, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Import a license.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
         /// <param name="license">The saved license.</param>
+        /// <param name="headers">The headers.</param>
         [Post("/products/{productId}/licenses/import")]
-        Task<LicenseDto> ImportAsync(Guid productId, LicenseBackupDto license);
+        Task<LicenseDto> ImportAsync(Guid productId, LicenseBackupDto license, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Export a license.
         /// </summary>
         /// <param name="licenseId">The license identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Post("/licenses/{licenseId}/export")]
-        Task<LicenseBackupDto> ExportAsync(Guid licenseId);
+        Task<LicenseBackupDto> ExportAsync(Guid licenseId, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Download the license.
         /// </summary>
         /// <param name="licenseId">The license identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Get("/licenses/{licenseId}/download")]
-        Task<string> DownloadAsync(Guid licenseId);
+        Task<string> DownloadAsync(Guid licenseId, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Delete a license.
         /// </summary>
         /// <param name="licenseId">The license identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Delete("/licenses/{licenseId}")]
-        Task DeleteAsync(Guid licenseId);
+        Task DeleteAsync(Guid licenseId, [HeaderCollection] IDictionary<string, string> headers = default);
     }
 }

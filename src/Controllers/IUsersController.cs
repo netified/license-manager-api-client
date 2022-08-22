@@ -21,6 +21,7 @@
 using LicenseManager.Api.Abstractions;
 using Refit;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LicenseManager.Api.Client.Models
@@ -34,19 +35,23 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="sorts">The sorts.</param>
         /// <param name="page">The page number.</param>
         /// <param name="pageSize">Size of the page.</param>
+        /// <param name="headers">The headers.</param>
         [Get("/users?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<UserDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100);
+        Task<PagedResult<UserDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Get the current user.
         /// </summary>
+        /// <param name="headers">The headers.</param>
         [Get("/users/me")]
-        Task<UserDto> GetCurrentAsync();
+        Task<UserDto> GetCurrentAsync([HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Update the default tenant of the current user.
         /// </summary>
+        /// <param name="tenantId">The tenant identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Put("/users/me/tenants/{tenantId}")]
-        Task<UserDto> SetDefaultTenantAsync(Guid tenantId);
+        Task<UserDto> SetDefaultTenantAsync(Guid tenantId, [HeaderCollection] IDictionary<string, string> headers = default);
     }
 }

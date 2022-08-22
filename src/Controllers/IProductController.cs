@@ -39,51 +39,58 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="sorts">The sorts.</param>
         /// <param name="page">The page number.</param>
         /// <param name="pageSize">Size of the page.</param>
+        /// <param name="headers">The headers.</param>
         [Get("/tenants/{tenantId}/products?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<ProductDto>> ListAsync(Guid tenantId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100);
+        Task<PagedResult<ProductDto>> ListAsync(Guid tenantId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
-        /// 🧊 Add a product.
+        /// Add a product.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
         /// <param name="request">The product request.</param>
+        /// <param name="headers">The headers.</param>
         [Post("/tenants/{tenantId}/products")]
-        Task<ProductDto> AddAsync(Guid tenantId, ProductRequest request);
+        Task<ProductDto> AddAsync(Guid tenantId, ProductRequest request, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Import a product.
         /// </summary>
         /// <param name="tenantId">The tenant identifier.</param>
         /// <param name="product">The product configuration.</param>
+        /// <param name="headers">The headers.</param>
         [Post("/tenants/{tenantId}/products/import")]
-        Task<ProductDto> ImportAsync(Guid tenantId, ProductBackupDto product);
+        Task<ProductDto> ImportAsync(Guid tenantId, ProductBackupDto product, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// List of product's user permissions.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Get("/products/{productId}/permissions")]
-        Task<List<PermissionDto>> ListPermissionAsync(Guid productId);
+        Task<List<PermissionDto>> ListPermissionAsync(Guid productId, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Get a product.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Get("/products/{productId}")]
-        Task<ProductDto> GetAsync(Guid productId);
+        Task<ProductDto> GetAsync(Guid productId, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Export a product.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Post("/products/{productId}/export")]
-        Task<ProductBackupDto> ExportAsync(Guid productId);
+        Task<ProductBackupDto> ExportAsync(Guid productId, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
-        /// 🧊 Delete a product.
+        /// Delete a product.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
+        /// <param name="headers">The headers.</param>
         [Delete("/products/{productId}")]
-        Task DeleteAsync(Guid productId);
+        Task DeleteAsync(Guid productId, [HeaderCollection] IDictionary<string, string> headers = default);
     }
 }
