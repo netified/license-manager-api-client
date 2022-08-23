@@ -26,10 +26,8 @@ using System.Threading.Tasks;
 
 namespace LicenseManager.Api.Client.Models
 {
-    public interface IApiSearchScoped<EntityDto>  where EntityDto : class
+    public interface IApiSearchScoped<EntityDto> where EntityDto : class
     {
-        Task<PagedResult<EntityDto>> ListAsync(Guid scopeId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
+        Task<PagedResult<EntityDto>> PaginedListAsync(Guid scopeId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
     }
-
-
 }

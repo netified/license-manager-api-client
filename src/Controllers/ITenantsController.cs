@@ -37,7 +37,7 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="headers">The headers.</param>
         [Get("/tenants?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        new Task<PagedResult<TenantDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
+        new Task<PagedResult<TenantDto>> PaginedListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Create a tenant.

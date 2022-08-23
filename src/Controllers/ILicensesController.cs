@@ -38,7 +38,7 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="headers">The headers.</param>
         [Get("/products/{productId}/licenses?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        new Task<PagedResult<LicenseDto>> ListAsync(Guid productId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
+        new Task<PagedResult<LicenseDto>> PaginedListAsync(Guid productId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Get a license.

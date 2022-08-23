@@ -27,6 +27,6 @@ namespace LicenseManager.Api.Client.Models
 {
     public interface IApiSearchDefault<EntityDto> where EntityDto : class
     {
-        Task<PagedResult<EntityDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
+        Task<PagedResult<EntityDto>> PaginedListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
     }
 }
