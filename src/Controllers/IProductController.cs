@@ -29,7 +29,7 @@ namespace LicenseManager.Api.Client.Models
     /// <summary>
     /// Product controller abstraction
     /// </summary>
-    public interface IProductController : IApiController, IApiSearchScoped<LicenseDto>
+    public interface IProductController : IApiController, IApiSearchScoped<ProductDto>
     {
         /// <summary>
         /// List all the products.

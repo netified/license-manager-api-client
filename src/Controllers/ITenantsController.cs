@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 
 namespace LicenseManager.Api.Client.Models
 {
-    public interface ITenantsController : IApiController, IApiSearchDefault<LicenseDto>
+    public interface ITenantsController : IApiController, IApiSearchDefault<TenantDto>
     {
         /// <summary>
         /// List all tenants.
