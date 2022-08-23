@@ -29,7 +29,7 @@ namespace LicenseManager.Api.Client.Models
     /// <summary>
     /// Product controller abstraction
     /// </summary>
-    public interface IProductController : IApiController
+    public interface IProductController : IApiController, IApiSearchScoped<LicenseDto>
     {
         /// <summary>
         /// List all the products.
@@ -41,7 +41,7 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="headers">The headers.</param>
         [Get("/tenants/{tenantId}/products?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<ProductDto>> ListAsync(Guid tenantId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
+        new Task<PagedResult<ProductDto>> ListAsync(Guid tenantId, string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Add a product.

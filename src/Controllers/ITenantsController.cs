@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 
 namespace LicenseManager.Api.Client.Models
 {
-    public interface ITenantsController : IApiController
+    public interface ITenantsController : IApiController, IApiSearchDefault<LicenseDto>
     {
         /// <summary>
         /// List all tenants.
@@ -37,7 +37,7 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="headers">The headers.</param>
         [Get("/tenants?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<TenantDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
+        new Task<PagedResult<TenantDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Create a tenant.

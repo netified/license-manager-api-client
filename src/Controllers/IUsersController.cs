@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 
 namespace LicenseManager.Api.Client.Models
 {
-    public interface IUsersController : IApiController
+    public interface IUsersController : IApiController, IApiSearchDefault<UserDto>
     {
         /// <summary>
         /// List all users.
@@ -37,7 +37,7 @@ namespace LicenseManager.Api.Client.Models
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="headers">The headers.</param>
         [Get("/users?filters={filters}&sorts={sorts}&page={page}&pageSize={pageSize}")]
-        Task<PagedResult<UserDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
+        new Task<PagedResult<UserDto>> ListAsync(string filters = "", string sorts = "", int? page = 1, int? pageSize = 100, [HeaderCollection] IDictionary<string, string> headers = default);
 
         /// <summary>
         /// Get the current user.
